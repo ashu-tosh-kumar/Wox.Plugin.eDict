@@ -13,5 +13,6 @@ The `dictionary.json` file provides the dictionary content used by the plugin. T
 - **Note**: Only `Images Folder`, `dictionary_compact.json`, `main.py` and `plugin.json` are manadatory to be copied.
 
 ## Usage
-- Simply launch Wox, type `ed`, give space ` ` and start typing the word.
-![Usage Screenshot1] (./ed-screenshot1.png)
+- Simply launch Wox, type `ed`, give space and start typing the word.
+
+![Usage Screenshot1](ed-screenshot1.png)
