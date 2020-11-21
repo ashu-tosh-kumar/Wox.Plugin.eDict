@@ -2,7 +2,7 @@
 
 This repository provides an offline English Dictionary plugin based on Webster's Unabridged English Dictionary for [*Wox*](http://www.wox.one/) ([*GitHub Repository*](https://github.com/Wox-launcher/Wox)).
 
-## Dictionary data
+## Dictionary Data
 The `dictionary.json` file provides the dictionary content used by the plugin. This `dictionary.json` file is sourced from GitHub project [*WebstersEnglishDictionary*](https://github.com/matthewreagan/WebstersEnglishDictionary) that in turn sourced the dictionary content from [*Project Gutenberg's*](https://www.gutenberg.org/) [*Webster's Unabridged English Dictionary*](https://www.gutenberg.org/ebooks/29765).
 
 ## Installation Instructions
@@ -13,6 +13,6 @@ The `dictionary.json` file provides the dictionary content used by the plugin. T
 - **Note**: Only `Images Folder`, `dictionary_compact.json`, `main.py` and `plugin.json` are manadatory to be copied.
 
 ## Usage
-- Simply launch Wox, type `ed`, give space and start typing the word.
+- Simply launch Wox, type `ed`, give space and start typing the word!
 
 ![Usage Screenshot1](ed-screenshot1.png)
