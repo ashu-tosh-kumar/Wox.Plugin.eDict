@@ -14,7 +14,7 @@ Before installing this plugin. make sure that you have `Python3` installed and `
 #### Method 1
 - Drag and Drop the Wox.Plugin.eDict.wox onto the Wox Launcher
 #### Method 2
-- Download and copy this repository to Wox's Plugin directory within your installation directory (*Go to Wox Settings, select any installed plugin and click on Plugin Directory to quickly find the plugin directory*).
+- Download and copy this repository from [*Releases*](https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict/releases) to Wox's Plugin directory within your installation directory (*Go to Wox Settings, select any installed plugin and click on Plugin Directory to quickly find the plugin directory*).
 - **Note**: Only `Images Folder`, `dictionary_compact.json`, `main.py` and `plugin.json` are manadatory to be copied.
 
 ## Usage
