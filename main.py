@@ -8,34 +8,51 @@
 """
 
 from json import load
+from spell import SpellCorrect
 from wox import Wox, WoxAPI
 
 
 class EDict(Wox):
     """Easy Dictionay Class used by Wox"""
 
-    def _add_result(self, results, key, max_results):
+    def _add_result(self, definitions, results, key, max_results, correction_flag):
         """Adds first two definitions to the result sent to Wox"""
-        for _definition in self._definitions.split(';')[:max_results]:
-            if _definition[0].isdigit():
-                _definition = _definition[3:]
+        for definition in definitions.split(';')[:max_results]:
+            if definition[0].isdigit():
+                definition = definition[3:]
             try:
-                _definition = _definition[:_definition.index('.')]
+                definition = definition[:definition.index('.')]
             except ValueError:
                 pass
-            results.append(
-                {"Title": _definition.strip(), "IcoPath": "Images\\edict.ico"})
+            try:
+                definition.strip()[0].upper()+definition.strip()[1:]
+            except IndexError:
+                pass
+            result = {"Title": definition, 'SubTitle': None,
+                      "IcoPath": "Images\\edict.ico"}
+            if correction_flag:
+                result['SubTitle'] = f'Showing results for "{key}" (auto-corrected)'
+            else:
+                result['SubTitle'] = f'Showing results for "{key}"'
+            results.append(result)
 
     def query(self, key):
         """Overides Wox query function to capture user input"""
-        with open('dictionary_compact.json', 'r') as edict_file:
+        with open('dictionary_compact_with_words.json', 'r') as edict_file:
             self.edict = load(edict_file)
+        words = self.edict['cb2b20da-9168-4e8e-8e8f-9b54e7d42214']
+        spell_correct = SpellCorrect(words)
         results = []
         try:
-            self._definitions = self.edict[key.strip()]
-            self._add_result(results, key, 4)
+            definitions = self.edict[key.strip()]
+            self._add_result(definitions, results, key, 4, False)
         except KeyError:
-            pass
+            try:
+                corrected_key = spell_correct.correction(key)
+                definitions = self.edict[corrected_key]
+                self._add_result(definitions, results, corrected_key, 4, True)
+            except KeyError:
+                pass
         return results
 
 
