@@ -34,6 +34,7 @@
 """
 
 from json import load
+from zipfile import ZipFile
 from spell import SpellCorrect
 from wox import Wox, WoxAPI
 
@@ -64,8 +65,9 @@ class EDict(Wox):
 
     def query(self, key):
         """Overides Wox query function to capture user input"""
-        with open('dictionary_compact_with_words.json', 'r') as edict_file:
-            self.edict = load(edict_file)
+        with ZipFile('dictionary_compact_with_words.zip', 'r') as zip_file:
+            with zip_file.open('dictionary_compact_with_words.json') as edict_file:
+                self.edict = load(edict_file)
         words = self.edict['cb2b20da-9168-4e8e-8e8f-9b54e7d42214']
         spell_correct = SpellCorrect(words)
         results = []

@@ -1,5 +1,6 @@
 # Files in project
 wox.py
+dump/
 
 # VS Code files
 .vscode/
