@@ -1,7 +1,7 @@
 """
     encoding=utf8
     author: ashutosh
-    
+
     MIT License
 
     Copyright (c) 2020 Ashutosh
@@ -31,58 +31,106 @@
             https://www.gutenberg.org/ebooks/29765.
         -The spell.py file used in this project is sourced from  Peter Norvig's website norvig.com
            http://norvig.com/spell-correct.html. The file is modified for the current use case.
+        - Wox documentation on how to create a plugin: http://doc.wox.one/en/plugin/python_plugin.html
 """
 
 from json import load
+from typing import Dict, List
 from zipfile import ZipFile
+
+# Wox already contains a python env with `wox` library pre-installed
+from wox import Wox
+
 from spell import SpellCorrect
-from wox import Wox, WoxAPI
+
+ICON_PATH = "icons\\edict.ico"
+MAXIMUM_RESULTS = 4
 
 
 class EDict(Wox):
-    """Easy Dictionay Class used by Wox"""
+    """Easy Dictionary Class used by Wox"""
 
-    def _add_result(self, definitions, results, key, max_results, correction_flag):
-        """Adds first two definitions to the result sent to Wox"""
-        for definition in definitions.split(';')[:max_results]:
+    def __init__(self, *args, **kwargs) -> None:
+        """Initializer for `EDict` class"""
+        with ZipFile("dictionary_compact_with_words.zip", "r") as zip_file:
+            with zip_file.open("dictionary_compact_with_words.json") as edict_file:
+                self._edict = load(edict_file)
+
+        # Key "cb2b20da-9168-4e8e-8e8f-9b54e7d42214" gives a list of all words
+        words = self._edict["cb2b20da-9168-4e8e-8e8f-9b54e7d42214"]
+        self._spell_correct = SpellCorrect(words)
+
+        super().__init__(*args, **kwargs)
+
+    def _format_result(self, definitions: str, key: str, max_results: int, correction_flag: bool) -> List[Dict[str, str]]:
+        """Adds `max_results` number of definitions from `definitions` formatted for Wox
+
+        Args:
+            definitions (str): String containing all definitions separated by ";"
+            key (str): Word for which definitions are passed
+            max_results (int): Maximum number of results to be returned
+            correction_flag (bool): Whether the key is corrected
+
+        Returns:
+            List[Dict[str, str]]: Returns list of results where each result is a dictionary containing `Title`, `SubTitle` and `IcoPath`
+        """
+        results: List[Dict[str, str]] = []
+        for definition in definitions.split(";")[:max_results]:
+            # TODO @ashutosh add explanations on why below three rules are added
             if definition[0].isdigit():
                 definition = definition[3:]
+
             try:
-                definition = definition[:definition.index('.')]
+                definition = definition[: definition.index(".")]
             except ValueError:
                 pass
+
             try:
-                definition.strip()[0].upper()+definition.strip()[1:]
+                definition.strip()[0].upper() + definition.strip()[1:]
             except IndexError:
                 pass
-            result = {"Title": definition, 'SubTitle': None,
-                      "IcoPath": "Images\\edict.ico"}
+
+            # Creating result
+            result = {"Title": definition, "IcoPath": ICON_PATH}
+
+            # Showing whether the key has been auto-corrected or not
             if correction_flag:
-                result['SubTitle'] = f'Showing results for "{key}" (auto-corrected)'
+                result["SubTitle"] = f"Showing results for '{key}' (auto-corrected)"
             else:
-                result['SubTitle'] = f'Showing results for "{key}"'
+                result["SubTitle"] = f"Showing results for '{key}'"
+
             results.append(result)
 
-    def query(self, key):
-        """Overides Wox query function to capture user input"""
-        with ZipFile('dictionary_compact_with_words.zip', 'r') as zip_file:
-            with zip_file.open('dictionary_compact_with_words.json') as edict_file:
-                self.edict = load(edict_file)
-        words = self.edict['cb2b20da-9168-4e8e-8e8f-9b54e7d42214']
-        spell_correct = SpellCorrect(words)
-        results = []
+    # A function named query is necessary, we will automatically invoke this function when user query this plugin
+    def query(self, key: str) -> List[Dict[str, str]]:
+        """Overrides Wox query function to capture user input
+
+        Args:
+            key (str): User search input
+
+        Returns:
+            List[Dict[str, str]]: Returns list of results where each result is a dictionary
+        """
+        results: List[Dict[str, str]] = []
+        key = key.strip().lower()
+
         try:
-            definitions = self.edict[key.strip()]
-            self._add_result(definitions, results, key, 4, False)
+            # Look for the given key
+            definitions = self._edict[key]
+            results = self._format_result(definitions, key, MAXIMUM_RESULTS, False)
         except KeyError:
+            # Try correcting the key and looking again with the corrected key
             try:
-                corrected_key = spell_correct.correction(key)
-                definitions = self.edict[corrected_key]
-                self._add_result(definitions, results, corrected_key, 4, True)
+                corrected_key = self._spell_correct.correction(key)
+                definitions = self._edict[corrected_key]
+                results = self._format_result(definitions, corrected_key, MAXIMUM_RESULTS, True)
             except KeyError:
+                # Word doesn't exist in our dictionary
                 pass
+
         return results
 
 
+# Following statement is necessary by Wox
 if __name__ == "__main__":
     EDict()
