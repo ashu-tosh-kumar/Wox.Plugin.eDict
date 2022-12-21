@@ -7,6 +7,6 @@
     "Version":"2.1.0",
     "Language":"python",
     "Website":"https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict",
-    "IcoPath": "Images\\edict.png",
+    "IcoPath": "icons\\edict.png",
     "ExecuteFileName":"main.py"
   }
