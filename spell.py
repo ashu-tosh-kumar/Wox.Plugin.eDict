@@ -6,8 +6,8 @@ MIT license: www.opensource.org/licenses/mit-license.php
 
 # Spelling Corrector
 
-from re import findall
 from collections import Counter
+from re import findall
 
 
 class SpellCorrect:
@@ -15,11 +15,11 @@ class SpellCorrect:
         self.WORDS_COUNTER = Counter(words_list)
 
     def words(self, text):
-        return findall(r'\w+', text.lower())
+        return findall(r"\w+", text.lower())
 
     def prob_word(self, word):
         "Probability of `word`."
-        N=sum(self.WORDS_COUNTER.values())
+        N = sum(self.WORDS_COUNTER.values())
         return self.WORDS_COUNTER[word] / N
 
     def correction(self, word):
@@ -28,7 +28,7 @@ class SpellCorrect:
 
     def candidates(self, word):
         "Generate possible spelling corrections for word."
-        return (self.known([word]) or self.known(self.edits1(word)) or self.known(self.edits2(word)) or [word])
+        return self.known([word]) or self.known(self.edits1(word)) or self.known(self.edits2(word)) or [word]
 
     def known(self, words):
         "The subset of `words` that appear in the dictionary of WORDS."
@@ -36,7 +36,7 @@ class SpellCorrect:
 
     def edits1(self, word):
         "All edits that are one edit away from `word`."
-        letters = 'abcdefghijklmnopqrstuvwxyz'
+        letters = "abcdefghijklmnopqrstuvwxyz"
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
         deletes = [L + R[1:] for L, R in splits if R]
         transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R) > 1]
