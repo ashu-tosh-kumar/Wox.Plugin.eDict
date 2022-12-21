@@ -4,7 +4,7 @@
     "Name":"Easy Dictionary",
     "Description":"Provides an offline English Dictionary",
     "Author":"ashutosh",
-    "Version":"2.1.0",
+    "Version":"2.2.0",
     "Language":"python",
     "Website":"https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict",
     "IcoPath": "icons\\edict.png",
