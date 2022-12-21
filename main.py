@@ -101,6 +101,8 @@ class EDict(Wox):
 
             results.append(result)
 
+        return results
+
     # A function named query is necessary, we will automatically invoke this function when user query this plugin
     def query(self, key: str) -> List[Dict[str, str]]:
         """Overrides Wox query function to capture user input
