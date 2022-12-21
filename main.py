@@ -116,6 +116,10 @@ class EDict(Wox):
         results: List[Dict[str, str]] = []
         key = key.strip().lower()
 
+        if not key:
+            # Avoid looking for empty key
+            return results
+
         try:
             # Look for the given key
             definitions = self._edict[key]
