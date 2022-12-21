@@ -38,12 +38,14 @@ from json import load
 from typing import Dict, List
 from zipfile import ZipFile
 
+from spell import SpellCorrect
+
 # Wox already contains a python env with `wox` library pre-installed
 from wox import Wox
 
-from spell import SpellCorrect
-
 ICON_PATH = "icons\\edict.ico"
+DICTIONARY_ZIP_FILE = "dictionary_compact_with_words.zip"
+DICTIONARY_JSON_FILE = "dictionary_compact_with_words.json"
 MAXIMUM_RESULTS = 4
 
 
@@ -52,8 +54,8 @@ class EDict(Wox):
 
     def __init__(self, *args, **kwargs) -> None:
         """Initializer for `EDict` class"""
-        with ZipFile("dictionary_compact_with_words.zip", "r") as zip_file:
-            with zip_file.open("dictionary_compact_with_words.json") as edict_file:
+        with ZipFile(DICTIONARY_ZIP_FILE, "r") as zip_file:
+            with zip_file.open(DICTIONARY_JSON_FILE) as edict_file:
                 self._edict = load(edict_file)
 
         # Key "cb2b20da-9168-4e8e-8e8f-9b54e7d42214" gives a list of all words
