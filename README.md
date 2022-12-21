@@ -19,7 +19,7 @@ Before installing this plugin, make sure that you have `Python3` installed and `
 #### Method 1
 
 - Install directly using Wox: `wpm install Easy Dictionary`
-![Usage Screenshot1](ed-screenshot3.png)
+![Usage Screenshot1](.sample_images/ed-screenshot3.png)
 
 #### Method 2
 
@@ -30,6 +30,6 @@ Before installing this plugin, make sure that you have `Python3` installed and `
 - Simply launch Wox, type `ed`, give space and start typing the word!
 - `auto-corrected` shows that the query is auto-corrected.
 
-![Usage Screenshot1](ed-screenshot1.png)
+![Usage Screenshot1](.sample_images/ed-screenshot1.png)
 
-![Usage Screenshot2](ed-screenshot2.png)
+![Usage Screenshot2](.sample_images/ed-screenshot2.png)
