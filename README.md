@@ -25,11 +25,6 @@ Before installing this plugin, make sure that you have `Python3` installed and `
 
 - Drag and Drop the `Wox.Plugin.eDict.wox` onto the Wox Launcher
 
-#### Method 3
-
-- Download and copy this repository from [*Releases*](https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict/releases) to Wox's Plugin directory (*Go to Wox Settings, select any installed plugin and click on Plugin Directory to quickly find the plugin directory*).
-- **Note**: Only `Images Folder`, `dictionary_compact_with_words.json`, `spell.py`, `main.py` and `plugin.json` are required to be copied.
-
 ## Usage
 
 - Simply launch Wox, type `ed`, give space and start typing the word!
