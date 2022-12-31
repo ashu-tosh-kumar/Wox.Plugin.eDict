@@ -3,6 +3,7 @@
 This repository provides an offline English Dictionary plugin based on Webster's Unabridged English Dictionary for [*Wox*](http://www.wox.one/) ([*GitHub Repository*](https://github.com/Wox-launcher/Wox)).
 
 Easy Dictionary Plugin also available on Wox's website: [*http://www.wox.one/plugin/351*](http://www.wox.one/plugin/351)
+
 Medium article detailing about how to develop a Wox plugin: https://at-k.medium.com/how-to-develop-a-wox-plugin-using-python-8f2372281d7 with an example of Easy Dictionary.
 
 ## Contributions
