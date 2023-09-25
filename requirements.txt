@@ -1,5 +1,5 @@
 # Python 3.11.0
-black==23.7.0
+black==23.9.1
 coverage==7.3.1
 flake8==6.1.0
 pre-commit==3.4.0
