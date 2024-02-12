@@ -5,6 +5,8 @@ name: OSSAR
 
 on:
   push:
+    branches-ignore:
+      - 'dependabot/**' # Ignore push events from Dependabot branches
   pull_request:
 
 jobs:
