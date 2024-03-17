@@ -64,9 +64,9 @@ Python's path.
 
 ## Changelog
 
-Unfortunately didn't maintain history before `v2.2.1`.
+Unfortunately didn't maintain history before `v2.3.0`.
 
-`2.2.1`
+`2.3.0`
 
 - Add support for copying the meaning on hitting Enter key. Note that we use
   [pyperclip](https://github.com/asweigart/pyperclip) to provide cross platform copy
