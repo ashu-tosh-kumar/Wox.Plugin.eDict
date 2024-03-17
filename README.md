@@ -68,4 +68,7 @@ Unfortunately didn't maintain history before `v2.2.1`.
 
 `2.2.1`
 
-- Add support for copying the meaning on hitting Enter key.
+- Add support for copying the meaning on hitting Enter key. Note that we use
+  [pyperclip](https://github.com/asweigart/pyperclip) to provide cross platform copy
+  functionality. So, if copy doesn't work on your platform, have a look at `pyperclip`
+  GitHub `README` to see if you would need to install any tool on your system.
