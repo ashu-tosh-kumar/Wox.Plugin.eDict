@@ -1,6 +1,11 @@
 [tool.black]
 line-length = 160
 include = '\.pyi?$'
+force-exclude = '''
+/(
+  | lib
+)/
+'''
 exclude = '''
 /(
     \.git
@@ -14,5 +19,39 @@ exclude = '''
   | dist
   | migrations
   | venv
+  | \.history
 )/
 '''
+
+[tool.isort]
+profile = "black"
+skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode"]
+skip_glob = ["lib/*"]
+
+[tool.poetry]
+name = "easy-dictionary"
+version = "2.3.0"
+description = "An offline English dictionary plugin for Wox based on Webster's Unabridged English Dictionary."
+authors = ["Ashutosh <37182127+ashu-tosh-kumar@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+homepage = "https://www.wox.one/plugin/351"
+repository = "https://github.com/ashu-tosh-kumar/todo_notifier"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.6.2"
+black = "^24.3.0"
+coverage = "^7.4.4"
+flake8 = "^7.0.0"
+pytest = "^8.1.1"
+isort = "^5.13.2"
+syrupy = "^4.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

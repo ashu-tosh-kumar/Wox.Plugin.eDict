@@ -1,10 +1,18 @@
 # Easy Dictionary
 
+- [Easy Dictionary](#easy-dictionary)
+  - [Contributions](#contributions)
+  - [Installation Instructions](#installation-instructions)
+    - [Method 1](#method-1)
+    - [Method 2](#method-2)
+  - [Usage](#usage)
+  - [Changelog](#changelog)
+
 This repository provides an offline English Dictionary plugin based on Webster's
 Unabridged English Dictionary for [Wox](http://www.wox.one/).
 
 Easy Dictionary Plugin is also available on [Wox's
-website](http://www.wox.one/plugin/351)
+website](http://www.wox.one/plugin/351).
 
 [Medium](https://at-k.medium.com/how-to-develop-a-wox-plugin-using-python-8f2372281d7)
 article detailing about how to develop a Wox plugin with an example of Easy Dictionary.
@@ -37,12 +45,13 @@ Python's path.
 
 ### Method 1
 
-- Install using Wox: `wpm install Easy Dictionary`
+- Install using Wox: `wpm install Easy Dictionary`.
 ![Usage Screenshot1](.sample_images/ed-screenshot3.png)
 
 ### Method 2
 
-- Drag and Drop the `Wox.Plugin.eDict.wox` onto the Wox Launcher
+- Drag and Drop the `Wox.Plugin.eDict.wox` onto the Wox Launcher.
+- To rebuild the above file, run command `sh build.sh`.
 
 ## Usage
 
@@ -52,3 +61,14 @@ Python's path.
 ![Usage Screenshot1](.sample_images/ed-screenshot1.png)
 
 ![Usage Screenshot2](.sample_images/ed-screenshot2.png)
+
+## Changelog
+
+Unfortunately didn't maintain history before `v2.3.0`.
+
+`2.3.0`
+
+- Add support for copying the meaning on hitting Enter key. Note that we use
+  [pyperclip](https://github.com/asweigart/pyperclip) to provide cross platform copy
+  functionality. So, if copy doesn't work on your platform, have a look at `pyperclip`
+  GitHub `README` to see if you would need to install any tool on your system.

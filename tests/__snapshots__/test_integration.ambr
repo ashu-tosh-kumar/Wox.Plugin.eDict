@@ -1,0 +1,37 @@
+# serializer version: 1
+# name: TestIntegration.test_integration[empty-key]
+  list([
+  ])
+# ---
+# name: TestIntegration.test_integration[no-spelling-mistake-in-key]
+  list([
+    dict({
+      'IcoPath': 'icons\\edict.ico',
+      'JsonRPCAction': dict({
+        'dontHideAfterAction': False,
+        'method': 'copy_to_clipboard',
+        'parameters': list([
+          'See Halloo',
+        ]),
+      }),
+      'SubTitle': "Showing results for 'hello'",
+      'Title': 'See Halloo',
+    }),
+  ])
+# ---
+# name: TestIntegration.test_integration[spelling-mistake-in-key]
+  list([
+    dict({
+      'IcoPath': 'icons\\edict.ico',
+      'JsonRPCAction': dict({
+        'dontHideAfterAction': False,
+        'method': 'copy_to_clipboard',
+        'parameters': list([
+          'See Halloo',
+        ]),
+      }),
+      'SubTitle': "Showing results for 'hello' (auto-corrected)",
+      'Title': 'See Halloo',
+    }),
+  ])
+# ---
