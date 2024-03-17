@@ -1,6 +1,11 @@
 [tool.black]
 line-length = 160
 include = '\.pyi?$'
+force-exclude = '''
+/(
+  | lib
+)/
+'''
 exclude = '''
 /(
     \.git
@@ -14,14 +19,14 @@ exclude = '''
   | dist
   | migrations
   | venv
-  | lib
   | \.history
 )/
 '''
 
 [tool.isort]
 profile = "black"
-skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode", "lib"]
+skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode"]
+skip_glob = ["lib/*"]
 
 [tool.poetry]
 name = "easy-dictionary"
