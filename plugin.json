@@ -1,12 +1,12 @@
 {
-    "ID":"0c6569f79d49409e8e5e42e1ec8bb035",
-    "ActionKeyword":"ed",
-    "Name":"Easy Dictionary",
-    "Description":"Provides an offline English Dictionary",
-    "Author":"ashutosh",
-    "Version":"2.2.0",
-    "Language":"python",
-    "Website":"https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict",
-    "IcoPath": "icons\\edict.png",
-    "ExecuteFileName":"main.py"
-  }
+  "ID": "0c6569f79d49409e8e5e42e1ec8bb035",
+  "ActionKeyword": "ed",
+  "Name": "Easy Dictionary",
+  "Description": "An offline English dictionary plugin for Wox based on Webster's Unabridged English Dictionary.",
+  "Author": "ashutosh",
+  "Version": "2.2.1",
+  "Language": "python",
+  "Website": "https://github.com/ashu-tosh-kumar/Wox.Plugin.eDict",
+  "IcoPath": "icons\\edict.png",
+  "ExecuteFileName": "main.py"
+}

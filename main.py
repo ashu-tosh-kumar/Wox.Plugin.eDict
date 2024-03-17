@@ -25,19 +25,23 @@
     SOFTWARE.
 
     Notes:
-        -The dictionary_compact_with_words.json file used in this project is modified form of
-            dictionary_compact.json file sourced from https://github.com/matthewreagan/WebstersEnglishDictionary
-            that in turn depends upon Project Gutenberg's Webster's Unabridged English Dictionary
-            https://www.gutenberg.org/ebooks/29765.
-        -The spell.py file used in this project is sourced from  Peter Norvig's website norvig.com
-           http://norvig.com/spell-correct.html. The file is modified for the current use case.
-        - Wox documentation on how to create a plugin: http://doc.wox.one/en/plugin/python_plugin.html
+        - The dictionary_compact_with_words.json file used in this project is modified
+        form of dictionary_compact.json file sourced from
+        https://github.com/matthewreagan/WebstersEnglishDictionary that in turn depends
+        upon Project Gutenberg's Webster's Unabridged English Dictionary
+        https://www.gutenberg.org/ebooks/29765.
+        - The spell.py file used in this project is sourced from  Peter Norvig's website
+        norvig.com http://norvig.com/spell-correct.html. The file is modified for the
+        current use case.
+        - Wox documentation on how to create a plugin:
+        http://doc.wox.one/en/plugin/python_plugin.html
 """
 
 from json import load
 from typing import Dict, List
 from zipfile import ZipFile
 
+from lib.src.pyperclip import copy
 from spell import SpellCorrect
 
 # Wox already contains a python env with `wox` library pre-installed
@@ -74,11 +78,11 @@ class EDict(Wox):
             correction_flag (bool): Whether the key is corrected
 
         Returns:
-            List[Dict[str, str]]: Returns list of results where each result is a dictionary containing `Title`, `SubTitle` and `IcoPath`
+            List[Dict[str, str]]: Returns list of results where each result is a
+            dictionary containing `Title`, `SubTitle` and `IcoPath`
         """
         results: List[Dict[str, str]] = []
         for definition in definitions.split(";")[:max_results]:
-            # TODO @ashutosh add explanations on why below three rules are added
             if definition[0].isdigit():
                 definition = definition[3:]
 
@@ -93,7 +97,12 @@ class EDict(Wox):
                 pass
 
             # Creating result
-            result = {"Title": definition, "IcoPath": ICON_PATH}
+            result = {
+                "Title": definition,
+                "IcoPath": ICON_PATH,
+                "SubTitle": "Press Enter to Copy",
+                "JsonRPCAction": {"method": "copy_to_clipboard", "parameters": [definition], "dontHideAfterAction": False},
+            }
 
             # Showing whether the key has been auto-corrected or not
             if correction_flag:
@@ -105,7 +114,8 @@ class EDict(Wox):
 
         return results
 
-    # A function named query is necessary, we will automatically invoke this function when user query this plugin
+    # A function named query is necessary, we will automatically invoke this function
+    # when user query this plugin
     def query(self, key: str) -> List[Dict[str, str]]:
         """Overrides Wox query function to capture user input
 
@@ -113,7 +123,8 @@ class EDict(Wox):
             key (str): User search input
 
         Returns:
-            List[Dict[str, str]]: Returns list of results where each result is a dictionary
+            List[Dict[str, str]]: Returns list of results where each result is a
+            dictionary.
         """
         results: List[Dict[str, str]] = []
         key = key.strip().lower()
@@ -137,6 +148,15 @@ class EDict(Wox):
                 pass
 
         return results
+
+    def copy_to_clipboard(self, data: str) -> None:
+        """Copies data to Windows clipboard using `pyperclip.copy` command
+
+        Args:
+            data (str): Data that needs to be copied to clipboard
+        """
+        # No viable and safe option as of now
+        copy(data)
 
 
 # Following statement is necessary by Wox

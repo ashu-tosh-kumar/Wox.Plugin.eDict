@@ -14,12 +14,18 @@ exclude = '''
   | dist
   | migrations
   | venv
+  | lib
+  | \.history
 )/
 '''
 
+[tool.isort]
+profile = "black"
+skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode", "lib"]
+
 [tool.poetry]
 name = "easy-dictionary"
-version = "2.2.0"
+version = "2.2.1"
 description = "An offline English dictionary plugin for Wox based on Webster's Unabridged English Dictionary."
 authors = ["Ashutosh <37182127+ashu-tosh-kumar@users.noreply.github.com>"]
 license = "MIT"
