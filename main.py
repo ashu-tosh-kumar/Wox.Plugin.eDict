@@ -157,7 +157,6 @@ class EDict(Wox):
         """
         # No viable and safe option as of now
         copy(data)
-        # WoxAPI.hide_app()
 
 
 # Following statement is necessary by Wox
