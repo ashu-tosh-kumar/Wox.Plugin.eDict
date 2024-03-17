@@ -145,7 +145,7 @@ class EDict(Wox):
         return results
 
     def copy_to_clipboard(self, data: str) -> None:
-        """Copies data to Windows clipboard using `clip` command
+        """Copies data to Windows clipboard using `pyperclip.copy` command
 
         Args:
             data (str): Data that needs to be copied to clipboard
