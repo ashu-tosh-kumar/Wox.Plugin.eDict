@@ -12,15 +12,15 @@ def edict_client():
 
 class TestIntegration:
     @pytest.mark.parametrize(
-        "key, expected_value",
+        "key",
         [
-            ("hello", [{"Title": "See Halloo", "IcoPath": "icons\\edict.ico", "SubTitle": "Showing results for 'hello'"}]),
-            ("helllo", [{"Title": "See Halloo", "IcoPath": "icons\\edict.ico", "SubTitle": "Showing results for 'hello' (auto-corrected)"}]),
-            ("", []),
+            ("hello"),
+            ("helllo"),
+            (""),
         ],
         ids=["no-spelling-mistake-in-key", "spelling-mistake-in-key", "empty-key"],
     )
-    def test_integration(self, edict_client, key, expected_value):
+    def test_integration(self, edict_client, key, snapshot):
         actual_value = edict_client.query(key)
 
-        assert expected_value == actual_value
+        assert snapshot == actual_value
