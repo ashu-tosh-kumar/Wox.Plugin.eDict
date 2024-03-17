@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define the output zip file
+OUTPUT_ZIP="Wox.Plugin.eDict.wox"
+
+# Delete the existing zip file if it exists
+if [ -f "$OUTPUT_ZIP" ]; then
+    rm "$OUTPUT_ZIP"
+fi
+
+# Define the filenames and folder
+FILES=("spell.py" "plugin.json" "main.py" "dictionary_compact_with_words.zip")
+FOLDER="icons"
+
+# Create a new zip file and add files
+zip -r "$OUTPUT_ZIP" "${FILES[@]}" "$FOLDER"
