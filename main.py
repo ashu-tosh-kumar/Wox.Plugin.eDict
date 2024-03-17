@@ -97,7 +97,12 @@ class EDict(Wox):
                 pass
 
             # Creating result
-            result = {"Title": definition, "IcoPath": ICON_PATH}
+            result = {
+                "Title": definition,
+                "IcoPath": ICON_PATH,
+                "SubTitle": "Press Enter to Copy",
+                "JsonRPCAction": {"method": "copy_to_clipboard", "parameters": [definition], "dontHideAfterAction": False},
+            }
 
             # Showing whether the key has been auto-corrected or not
             if correction_flag:
@@ -152,6 +157,7 @@ class EDict(Wox):
         """
         # No viable and safe option as of now
         copy(data)
+        # WoxAPI.hide_app()
 
 
 # Following statement is necessary by Wox
