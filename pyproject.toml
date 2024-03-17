@@ -14,8 +14,14 @@ exclude = '''
   | dist
   | migrations
   | venv
+  | lib
+  | \.history
 )/
 '''
+
+[tool.isort]
+profile = "black"
+skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode", "lib"]
 
 [tool.poetry]
 name = "easy-dictionary"
