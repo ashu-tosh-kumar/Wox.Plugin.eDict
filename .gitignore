@@ -136,3 +136,5 @@ dmypy.json
 # Local files
 .DS_Store
 .history/
+.sonarlint/
+.scannerwork/
