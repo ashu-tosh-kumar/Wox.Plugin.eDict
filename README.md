@@ -62,6 +62,11 @@ Python's path.
 
 ![Usage Screenshot2](.sample_images/ed-screenshot2.png)
 
+- You can hit `Enter` on word meaning to copy it. The extension use
+  [pyperclip](https://github.com/asweigart/pyperclip) to provide platform independent
+  functionality to copy. So, if copy doesn't work, please checkout its documentation if
+  you would need to install any tool on your system.
+
 ## Changelog
 
 Unfortunately didn't maintain history before `v2.3.0`.
@@ -72,3 +77,7 @@ Unfortunately didn't maintain history before `v2.3.0`.
   [pyperclip](https://github.com/asweigart/pyperclip) to provide cross platform copy
   functionality. So, if copy doesn't work on your platform, have a look at `pyperclip`
   GitHub `README` to see if you would need to install any tool on your system.
+
+`2.3.1`
+
+- Package upgrades and synk, sonarqube fixes.
