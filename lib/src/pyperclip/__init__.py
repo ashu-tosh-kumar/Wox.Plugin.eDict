@@ -53,13 +53,14 @@ import sys
 import time
 import warnings
 from ctypes import c_size_t, c_wchar, c_wchar_p, get_errno, sizeof
+from typing import Optional, Union
 
 _IS_RUNNING_PYTHON_2 = sys.version_info[0] == 2  # type: bool
 
 # For paste(): Python 3 uses str, Python 2 uses unicode.
 if _IS_RUNNING_PYTHON_2:
     # mypy complains about `unicode` for Python 2, so we ignore the type error:
-    _PYTHON_STR_TYPE = unicode  # noqa: F821
+    _PYTHON_STR_TYPE = unicode  # type: ignore
 else:
     _PYTHON_STR_TYPE = str
 
@@ -74,7 +75,7 @@ try:
 except ImportError:
     # Use the "which" unix command for Python 2.7 and prior.
     def _py2_executable_exists(name):  # type: (str) -> bool
-        return subprocess.Popen(['which', name],
+        return subprocess.call(['which', name],
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0
     _executable_exists = _py2_executable_exists
 
@@ -292,11 +293,9 @@ def init_no_clipboard():
             raise PyperclipException('Pyperclip could not find a copy/paste mechanism for your system. For more information, please visit https://pyperclip.readthedocs.io/en/latest/index.html#not-implemented-error' + additionalInfo)
 
         if _IS_RUNNING_PYTHON_2:
-            # file deepcode ignore MissingParameter
             def __nonzero__(self):
                 return False
         else:
-            # file deepcode ignore MissingParameter
             def __bool__(self):
                 return False
 
@@ -666,4 +665,5 @@ copy, paste = lazy_load_stub_copy, lazy_load_stub_paste
 
 
 __all__ = ['copy', 'paste', 'set_clipboard', 'determine_clipboard']
+
 
