@@ -6,9 +6,9 @@ name: Bandit
 
 on:
   push:
-    branches: ["development"]
+    branches: ["main", "development"]
   pull_request:
-    branches: ["development"]
+    branches: ["main", "development"]
   schedule:
     - cron: "30 7 * * 2"
 
@@ -19,6 +19,7 @@ jobs:
   bandit:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       security-events: write
     steps:
       - name: Checkout
