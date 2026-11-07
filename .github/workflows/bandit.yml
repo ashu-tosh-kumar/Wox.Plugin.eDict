@@ -23,9 +23,9 @@ jobs:
       security-events: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - name: Install Bandit
@@ -33,6 +33,6 @@ jobs:
       - name: Run Bandit
         run: bandit -r . -x ./tests,./.venv,./venv -f sarif -o bandit.sarif --exit-zero
       - name: Upload SARIF to code-scanning
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: bandit.sarif
